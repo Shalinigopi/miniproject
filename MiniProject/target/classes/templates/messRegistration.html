@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"></link>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="bootstrap-3.3.7-dist/js/sweetalert.min.js"></script>
+
+
+</head>
+<body>
+	<form role="form" method="post" name="MasterMess" id="MasterMess"
+		autocomplete="off">
+		<div id="section" th:fragment="section">
+			<div class="col-md-12 col-md-11"
+				style="float: none; margin-top: -10px;"></div>
+
+			<div style="margin-left: 30px; width: 1000px; padding: 20px;">
+				<table class="table">
+					<tr>
+						<td colspan="3"
+							style="background-color: #4262a5; color: white; font-weight: bold; text-align: center">Master
+							Mess From</td>
+					</tr>
+					<tr class="info">
+						<td align="center"><b>Mess Id</b></td>
+						<td align="center"><input type="tel" size="10"
+							name="registernumber" maxlength="10"
+							pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required="required"></input></td>
+					</tr>
+					<tr class="info">
+						<td align="center"><b>Mess Name</b></td>
+						<td align="center"><select name="MessName" size="1"
+							required="required">
+								<option value="">--select--</option>
+								<option value="Arasan">Arasan</option>
+								<option value="Darling">Darling</option>
+						</select></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

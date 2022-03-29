@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"></link>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="bootstrap-3.3.7-dist/js/sweetalert.min.js"></script>
+
+
+</head>
+<body>
+	<form role="form" method="post" name="RegistrationFrom"
+		id="RegistrationFrom" autocomplete="off">
+		<div id="section" th:fragment="section">
+
+			<div class="col-md-12 col-md-11"
+				style="float: none; margin-top: -10px;"></div>
+
+			<div style="margin-left: 30px; width: 1000px; padding: 20px;">
+				<table class="table">
+					<tr>
+						<td colspan="3"
+							style="background-color: #4262a5; color: white; font-weight: bold; text-align: center">Registration
+							From</td>
+					</tr>
+					<tr class="info">
+						<td align="center"><b>Register Number</b></td>
+						<td align="center"><input type="tel" size="10"
+							id="registernumber" name="registernumber" maxlength="10"
+							pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required="required"></input></td>
+					</tr>
+					<tr class="info">
+						<td align="center"><b> Name </b></td>
+						<td align="center"><input type="text" size="10" name="Name"
+							id="Name" maxlength="20" required="required"></input></td>
+					</tr>
+					<tr class="info">
+						<td align="center"><b>Gender </b></td>
+						<td align="center"><input type="radio" value="Male"
+							id="gender" name="gender" tabindex="1" required="required">&nbsp;Male&nbsp;&nbsp;&nbsp;&nbsp;</input>
+							<input type="radio" value="Female" name="gender" tabindex="1"
+							required="required">&nbsp;Femlae&nbsp;&nbsp;</input> </input></td>
+					</tr>
+					<tr class="info">
+						<td align="center"><b>Email Address </b></td>
+						<td align="center"><input type="email" size="10" name="email"
+							id="email" maxlength="20" required="required"></input></td>
+					</tr>
+					<tr class="info">
+						<td align="center"><b>Department</b></td>
+						<td align="center"><select name="Department" size="1"
+							id="Department" required="required">
+								<option value="">--select--</option>
+								<option value="ug">UG</option>
+								<option value="pg">PG</option>
+								<option value="phd">Phd</option>
+						</select></td>
+					</tr>
+					<tr class="info">
+						<td align="center"><b>Phone Number </b></td>
+						<td align="center"><input type="tel" size="10" name="phone"
+							id="phone" maxlength="10" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+							required="required"></input></td>
+					</tr>
+					<tr class="info">
+						<td align="center">
+							<button type="button" class="btn btn-success"
+								onClick="regData();">Submit</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<!-- <div style="margin-left: 80px; width: 1000px; padding: 20px;">
+				<table class="table">
+				<th:block th:each="stuDto : ${student}">
+					<tr>
+						<td colspan="3"
+							style="background-color: #3b361f; color: white; font-weight: bold; text-align: left">Studnet
+							Details</td>
+					</tr>
+					<tr>
+						<td align="center"><b>Register Number : </b></td>
+						<td th:text="${stuDto.getRegisterNumber()}"></td>
+					</tr>
+					<tr>
+						<td align="center"><b> Student Name: </b></td>
+						<td th:text="${stuDto.getStudentName()}"></td>
+
+					</tr>
+
+					<tr>
+						<td align="center"><b>Email ID : </b></td>
+						<td th:text="${stuDto.getEmailId() }"></td>
+					</tr>
+
+					<tr>
+						<td align="center"><b>Phono Number:</b></td>
+						<td th:text="${stuDto.getPhoneNO() }"></td>
+					</tr>
+					<tr>
+						<td align="center"><b>DepartMent :</b></td>
+						<td th:text="${stuDto.getDepartMent()}"></td>
+					</tr>
+
+					<tr>
+						<td align="center"><b> Gender :</b></td>
+						<td th:text="${stuDto.getGender()}"></td>
+					</tr>
+					</th:block>
+
+				</table>
+		</div> -->
+		</div>
+	</form>
+
+	<script type="text/javascript">
+		function checkStudentData() {
+			d = document.RegistrationFrom;
+
+			if (d.registernumber.value == "") {
+				alert("Enter Register Number");
+				d.registernumber.focus();
+				return false;
+			}
+
+			if (d.Name.value == "") {
+				alert("Enter the Name");
+				d.Name.focus();
+				return false;
+			}
+			if (d.gender.value.length == 0) {
+				alert("Gender Cant be Empty");
+				d.gender.focus();
+				return false;
+			}
+			/* if (d.email.value.match(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/)) {
+				alert("Yeah! a valid email!");
+				d.email.focus();
+				return true;
+			}
+			else
+			{
+				alert("Sorry! an invalid email!");
+				d.email.focus();
+				return false;
+			} */
+			if (d.Department.value.length == 0) {
+				alert("Select the Department");
+				d.Department.focus();
+				return false;
+			}
+
+			if (d.phone.value
+					.match(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/)) {
+				return true;
+			} else {
+				alert("Sorry! an Invalid PhoneNo!");
+				return false;
+			}
+			regData();
+		}
+		function regData() {
+			alert('Am inside');
+
+			var myform = document.getElementById("RegistrationFrom");
+	        var fd = new FormData(myform);
+			
+			
+
+			
+
+			var fd = new FormData(myform);
+			alert("called");
+			$.ajax({
+				url : "/doStutRegStore",
+				type : "POST",
+				data : fd,
+				cache : false,
+				processData : false,
+				contentType : false,
+				success : function(response) {
+					$("#section").html(response);
+					alert(response);
+
+				}
+
+			});
+		}
+	</script>
+</body>
+</html>

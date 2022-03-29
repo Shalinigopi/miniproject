@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"></link>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="bootstrap-3.3.7-dist/js/sweetalert.min.js"></script>
+
+
+</head>
+<body>
+
+	<form role="form" method="post" name="storeStudentForm"
+		id="storeStudentForm" autocomplete="off">
+		<div id="section" th:fragment="section">
+
+			<div class="jumbotron text-center">
+
+
+				<h3>Hostel Mess Information System</h3>
+			</div>
+
+			<table class="table">
+
+				<tr>
+					<td align="center"><b> Student Register Number : </b></td>
+					<td align="center"><input type="text" size="15"
+						name="SearchStudent" maxlength="20" required="required"></input></td>
+
+
+				</tr>
+			</table>
+			<div class="col-md-12 text-center">
+				<button type="button" class="btn btn-primary" onclick="checkForm()">Student
+					Details</button>
+				<button type="button" class="btn btn-primary"
+					onclick="checkRegistration()">Registration</button>
+				<button type="button" class="btn btn-primary"
+					onclick="checkMessRegistration()">Mess Registration</button>
+				<button type="button" class="btn btn-primary"
+					onclick="checkPayment()">Payment</button>
+
+			</div>
+		</div>
+	</form>
+
+	<script type="text/javascript">
+		function checkForm() {
+			d = document.storeStudentForm;
+
+			if (d.SearchStudent.value == "") {
+				alert("Enter the Student Register Number");
+				d.SearchStudent.focus();
+				return false;
+			}
+			proceedDetails();
+		}
+
+		function proceedDetails() {
+			//alert('Am inside');
+
+			var myform = document.storeStudentForm;
+
+			var fd = new FormData(myform);
+			alert("called");
+			$.ajax({
+				url : "/getStudentInfo",
+				type : "POST",
+				data : fd,
+				cache : false,
+				processData : false,
+				contentType : false,
+				success : function(response) {
+					$("#section").html(response);
+
+				}
+
+			});
+
+		}
+		function checkRegistration() {
+			var myform = document.storeStudentForm;
+
+			var fd = new FormData(myform);
+			alert("called");
+			$.ajax({
+				url : "/getRegistrationInfo",
+				type : "POST",
+				data : fd,
+				cache : false,
+				processData : false,
+				contentType : false,
+				success : function(response) {
+					$("#section").html(response);
+					alert(response);
+
+				}
+
+			});
+		}
+		function checkMessRegistration() {
+			var myform = document.storeStudentForm;
+
+			var fd = new FormData(myform);
+			alert("called");
+			$.ajax({
+				url : "/doMastermess",
+				type : "POST",
+				data : fd,
+				cache : false,
+				processData : false,
+				contentType : false,
+				success : function(response) {
+					$("#section").html(response);
+					alert(response);
+
+				}
+
+			});
+		}
+	</script>
+</body>
+</html>
